@@ -1,9 +1,10 @@
+
 name: Payment Service CI/CD
 
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   build-and-push:
@@ -20,9 +21,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: |
-          docker build -t rishika742/payment-service:latest .
+        run: docker build -t rishika742/payment-service:latest .
 
       - name: Push Docker image
-        run: |
-          docker push rishika742/payment-service:latest
+        run: docker push rishika742/payment-service:latest
