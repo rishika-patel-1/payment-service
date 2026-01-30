@@ -24,4 +24,5 @@ jobs:
         run: docker build -t rishika742/payment-service:latest .
 
       - name: Push Docker image
+        working-directory: backend/payment-service
         run: docker push rishika742/payment-service:latest
