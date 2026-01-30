@@ -1,20 +1,18 @@
-# Use Node.js official image
 FROM node:18-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Copy package files
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install --production
 
-# Copy app source code
 COPY . .
 
-# Expose port (change if needed)
-EXPOSE 3000
+ENV PORT=5003
+ENV SERVICE_NAME=Payment-Service
 
-# Start the app
+EXPOSE 5003
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s \
+  CMD wget -qO- http://localhost:5003/status || exit 1
+
 CMD ["node", "index.js"]
